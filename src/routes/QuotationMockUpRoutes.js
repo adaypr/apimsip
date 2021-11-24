@@ -37,7 +37,7 @@ module.exports = function (app) {
 		console.log('Notification received correctly on: ' + Date());
 		console.log(req.body);
 		console.log('....................................');
-		mailOptions.text = req.body;
+		mailOptions.text = JSON.stringify(req.body);
 		transporter.sendMail(mailOptions, function(error, info){
 		  if (error) {
 		    console.log(error);
