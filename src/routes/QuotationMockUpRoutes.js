@@ -14,7 +14,7 @@ var transporter = nodemailer.createTransport({
 
 var mailOptions = {
   from: 'cpaastgs@gmail.com',
-  to: 'cpaastgs@gmail.com',
+  to: 'ruben.lopezcasado@telefonica.com',
   subject: 'CPaaS Notification'
 };
 
