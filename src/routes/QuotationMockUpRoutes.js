@@ -2,6 +2,21 @@
 var express_logger = require('express-logger-unique-req-id');
 let logger = express_logger.getLogger();
 const uuid = require('node-uuid');
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'cpaastgs@gmail.com',
+    pass: 'Telefonica.2021'
+  }
+});
+
+var mailOptions = {
+  from: 'cpaastgs@gmail.com',
+  to: 'cpaastgs@gmail.com',
+  subject: 'CPaaS Notification'
+};
 
 module.exports = function (app) {
 	
@@ -22,7 +37,14 @@ module.exports = function (app) {
 		console.log('Notification received correctly on: ' + Date());
 		console.log(req.body);
 		console.log('....................................');
-		res.json({
+		mailOptions.text = req.body;
+		transporter.sendMail(mailOptions, function(error, info){
+		  if (error) {
+		    console.log(error);
+		  } else {
+		    console.log('Email sent: ' + info.response);
+		  }
+		  res.json({
 			  "data": [
 				{
 					    "text": 'Notification received correctly',
@@ -30,6 +52,8 @@ module.exports = function (app) {
 					  }
 				  ]
 				});
+		});
+		
   	});
 	
 	app.get('/operator-consents', async function(req, res) {
