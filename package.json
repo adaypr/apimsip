@@ -28,7 +28,7 @@
     "destroy": "^1.0.4",
     "encoding": "^0.1.12",
     "etag": "^1.8.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-http-context": "^1.2.0",
     "express-logger-unique-req-id": "^1.0.4",
     "express-session": "^1.15.6",
